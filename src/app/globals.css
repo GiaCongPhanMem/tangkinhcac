@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS — Dark (default) & Light
+   All components reference CSS vars, not hard-coded colours.
+══════════════════════════════════════════════════════════════ */
+:root,
+html.dark {
+  /* Surfaces */
+  --bg-base:       #111110;
+  --bg-2:          #1a1a18;
+  --bg-3:          #242420;
+  --bg-4:          #2e2e2a;
+  --bg-5:          #3a3a34;
+
+  /* Text */
+  --text-primary:  #f5f0e8;
+  --text-dim:      #c8c2b4;
+  --text-mute:     #7a7570;
+
+  /* Brand / accent */
+  --gold:          #b89a5e;
+  --gold-light:    #d4b47a;
+  --gold-dim:      #7a6438;
+  --gold-subtle:   rgba(184, 154, 94, 0.10);
+
+  /* Burgundy */
+  --burgundy:      #7c2d3e;
+  --burgundy-l:    #a03550;
+
+  /* Borders */
+  --color-border:  #2e2e2a;
+
+  /* Divider gradient stops */
+  --divider-color: #2e2e2a;
+
+  /* Glass header */
+  --glass-bg:      rgba(26, 26, 24, 0.88);
+
+  /* Scrollbar */
+  --scroll-track:  #111110;
+  --scroll-thumb:  #2e2e2a;
+
+  /* Shadcn-compat tokens */
+  --background:    30 5% 7%;
+  --foreground:    40 20% 94%;
+  --border:        40 8% 18%;
+  --input:         40 8% 18%;
+  --ring:          38 38% 55%;
+  --primary:       38 38% 55%;
+  --primary-foreground: 30 5% 7%;
+  --muted:         40 8% 14%;
+  --muted-foreground: 38 12% 60%;
+  --radius:        0.75rem;
+}
+
+html.light {
+  /* Surfaces */
+  --bg-base:       #faf8f4;
+  --bg-2:          #f2ede3;
+  --bg-3:          #e8e0d0;
+  --bg-4:          #ddd5c4;
+  --bg-5:          #cec5b2;
+
+  /* Text */
+  --text-primary:  #1a1a18;
+  --text-dim:      #3a3630;
+  --text-mute:     #7a7060;
+
+  /* Brand / accent — same gold, slightly deeper */
+  --gold:          #a0823a;
+  --gold-light:    #b89a5e;
+  --gold-dim:      #7a6030;
+  --gold-subtle:   rgba(160, 130, 58, 0.10);
+
+  /* Burgundy */
+  --burgundy:      #7c2d3e;
+  --burgundy-l:    #a03550;
+
+  /* Borders */
+  --color-border:  #cec5b2;
+
+  /* Divider */
+  --divider-color: #cec5b2;
+
+  /* Glass header */
+  --glass-bg:      rgba(250, 248, 244, 0.90);
+
+  /* Scrollbar */
+  --scroll-track:  #faf8f4;
+  --scroll-thumb:  #cec5b2;
+
+  /* Shadcn-compat */
+  --background:    40 30% 97%;
+  --foreground:    30 10% 10%;
+  --border:        38 20% 80%;
+  --input:         38 20% 80%;
+  --ring:          38 38% 45%;
+  --primary:       38 38% 45%;
+  --primary-foreground: 40 30% 97%;
+  --muted:         38 20% 88%;
+  --muted-foreground: 38 15% 45%;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BASE
+══════════════════════════════════════════════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Prevent flash by defaulting to dark; ThemeProvider switches class client-side */
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.2s ease;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--scroll-track); }
+  ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 3px; }
+
+  * { border-color: var(--color-border); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THEME-AWARE TAILWIND OVERRIDES
+   We shadow the Tailwind colour utilities with CSS-var versions
+   so every component gets the right colour in both modes.
+══════════════════════════════════════════════════════════════ */
+@layer components {
+  /* Surfaces */
+  .bg-charcoal   { background-color: var(--bg-base) !important; }
+  .bg-charcoal-2 { background-color: var(--bg-2) !important; }
+  .bg-charcoal-3 { background-color: var(--bg-3) !important; }
+  .bg-charcoal-4 { background-color: var(--bg-4) !important; }
+  .bg-charcoal-5 { background-color: var(--bg-5) !important; }
+
+  /* Border */
+  .border-charcoal-4 { border-color: var(--bg-4) !important; }
+  .border-charcoal-5 { border-color: var(--bg-5) !important; }
+
+  /* Text */
+  .text-ivory      { color: var(--text-primary) !important; }
+  .text-ivory-dim  { color: var(--text-dim) !important; }
+  .text-ivory-mute { color: var(--text-mute) !important; }
+
+  /* Gold */
+  .text-gold       { color: var(--gold) !important; }
+  .text-gold-light { color: var(--gold-light) !important; }
+  .bg-gold         { background-color: var(--gold) !important; }
+  .bg-gold-light   { background-color: var(--gold-light) !important; }
+  .border-gold-dim { border-color: var(--gold-dim) !important; }
+
+  /* ─── Typography helpers ─── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-headline {
+    font-family: var(--font-playfair), Georgia, serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 520px;
+  }
+
+  /* ─── Divider ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--divider-color) 25%,
+      var(--divider-color) 75%,
+      transparent
+    );
+  }
+
+  /* ─── Cards ─── */
+  .card-base {
+    background-color: var(--bg-2);
+    border: 1px solid var(--bg-4);
+    border-radius: 1rem;
+  }
+  .card-hover {
+    transition: all 0.2s ease;
+  }
+  .card-hover:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Glass header ─── */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* ─── Active dot ─── */
+  .active-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+    flex-shrink: 0;
+    display: inline-block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ═══════════════════════════════════════════════════════════
+   TYPING CURSOR
+══════════════════════════════════════════════════════════════ */
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIGHT MODE — Hero & section backgrounds
+   A few elements use inline `style` or absolute bg colours
+   that need a light-mode override.
+══════════════════════════════════════════════════════════════ */
+html.light .hero-ambient-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(160, 130, 58, 0.09) 0%, transparent 60%);
+}
+
+html.light .cta-ambient-glow {
+  background: radial-gradient(ellipse at 50% 50%, rgba(160, 130, 58, 0.07) 0%, transparent 60%);
+}
+
+/* Inline gradient styles on WhyTKC & AhaMoment */
+html.light .why-tkc-card {
+  background: linear-gradient(135deg, var(--bg-3) 0%, rgba(160,130,58,0.05) 100%) !important;
+}
+html.light .ai-research-sidebar {
+  background: linear-gradient(135deg, var(--bg-3) 0%, rgba(160,130,58,0.04) 100%) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SMOOTH THEME TRANSITION
+══════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+/* But don't transition transforms/opacity (breaks animations) */
+.reveal,
+.reveal.revealed,
+[class*="animate-"],
+[class*="transition-"] {
+  transition-property: opacity, transform, background-color, border-color, color, box-shadow;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER — server component safe classes
+══════════════════════════════════════════════════════════════ */
+.footer-root        { background-color: var(--bg-2); border-color: var(--color-border); }
+.footer-border      { border-color: var(--color-border); }
+.footer-text-primary{ color: var(--text-primary); }
+.footer-text-dim    { color: var(--text-dim); }
+.footer-text-mute   { color: var(--text-mute); }
+.footer-text-gold   { color: var(--gold); }
+.footer-link        { color: var(--text-mute); transition: color 0.15s ease; }
+.footer-link:hover  { color: var(--text-dim); }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV links inside server components
+══════════════════════════════════════════════════════════════ */
+.nav-link           { color: var(--text-mute); transition: color 0.15s ease; font-size: 13px; }
+.nav-link:hover     { color: var(--text-primary); }
