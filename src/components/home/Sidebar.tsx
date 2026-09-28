@@ -203,7 +203,7 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
                     >
                       PRO
                     </span>
-                    <span className="text-[10px]" style={{ color: "var(--gold)" }}>Vip Free</span>
+                    <span className="text-[10px]" style={{ color: "var(--gold)" }}>(90 ngày)</span>
                   </div>
                 </div>
               </div>

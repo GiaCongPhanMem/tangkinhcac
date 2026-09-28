@@ -206,16 +206,6 @@ export function MainArea({ sidebarOpen }: MainAreaProps) {
         <div className="flex items-center gap-2">
           <ThemeToggle size="sm" />
           <DonateButton />
-          <button
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all hover:opacity-90"
-            style={{
-              background: "linear-gradient(135deg, var(--gold), var(--gold-light))",
-              color: "var(--bg-base)",
-            }}
-          >
-            <Zap className="w-3 h-3" />
-            Vip Free
-          </button>
         </div>
       </div>
 

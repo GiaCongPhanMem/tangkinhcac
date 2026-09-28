@@ -8,9 +8,9 @@ export function DonateButton() {
   const [copied, setCopied] = useState(false);
 
   const BANK_INFO = {
-    name: "Nguyễn Văn A",
+    name: "Nguyễn Hoàng Anh",
     bank: "MoMo",
-    number: "0909 123 456",
+    number: "0849 247 247",
     content: "Ủng hộ Tàng Kinh Các",
   };
 
@@ -22,7 +22,7 @@ export function DonateButton() {
 
   return (
     <>
-      {/* Trigger button */}
+      {/* ── Trigger ── */}
       <button
         onClick={() => setOpen(true)}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all hover:opacity-90 hover:-translate-y-px"
@@ -37,7 +37,7 @@ export function DonateButton() {
         Donate
       </button>
 
-      {/* Modal overlay */}
+      {/* ── Modal ── */}
       {open && (
         <div
           className="fixed inset-0 z-[300] flex items-center justify-center p-4"
@@ -45,7 +45,7 @@ export function DonateButton() {
           onClick={() => setOpen(false)}
         >
           <div
-            className="relative w-full max-w-[360px] rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-[360px] rounded-2xl overflow-hidden shadow-2xl animate-slide-up"
             style={{
               backgroundColor: "var(--bg-2)",
               border: "1px solid var(--color-border)",
@@ -78,46 +78,44 @@ export function DonateButton() {
                 Mọi đóng góp đều giúp duy trì và phát triển nền tảng tri thức miễn phí này. 💛
               </p>
 
-              {/* QR Code placeholder — dùng QR thực từ Momo */}
+              {/* QR ảnh thật từ MoMo */}
               <div
-                className="w-[200px] h-[200px] rounded-2xl flex flex-col items-center justify-center border-2"
-                style={{
-                  background: "#fff",
-                  borderColor: "#e91e8c",
-                }}
+                className="rounded-2xl overflow-hidden border-2 p-2"
+                style={{ borderColor: "#e91e8c", background: "#fce4ec" }}
               >
-                {/* MoMo QR placeholder — thay bằng <img src="/qr-momo.png"> khi có ảnh thật */}
-                <svg viewBox="0 0 100 100" width="160" height="160" aria-hidden>
-                  {/* Border squares */}
-                  <rect x="5" y="5" width="28" height="28" rx="4" fill="none" stroke="#e91e8c" strokeWidth="3"/>
-                  <rect x="9" y="9" width="20" height="20" rx="2" fill="#e91e8c"/>
-                  <rect x="67" y="5" width="28" height="28" rx="4" fill="none" stroke="#e91e8c" strokeWidth="3"/>
-                  <rect x="71" y="9" width="20" height="20" rx="2" fill="#e91e8c"/>
-                  <rect x="5" y="67" width="28" height="28" rx="4" fill="none" stroke="#e91e8c" strokeWidth="3"/>
-                  <rect x="9" y="71" width="20" height="20" rx="2" fill="#e91e8c"/>
-                  {/* Data dots */}
-                  {[40,46,52,58,40,52,40,52,58,40,46,58,40,52,58].map((x, i) => (
-                    <rect key={i} x={x} y={40 + (i % 5) * 6} width="4" height="4" rx="0.5" fill="#333" />
-                  ))}
-                  {/* Center MoMo text */}
-                  <text x="50" y="88" textAnchor="middle" fontSize="7" fontWeight="bold" fill="#e91e8c">MOMO</text>
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/qr-momo.png"
+                  alt="QR MoMo - Nguyễn Hoàng Anh"
+                  width={220}
+                  height={220}
+                  style={{ display: "block", borderRadius: "12px" }}
+                />
               </div>
 
-              <p className="text-[11px]" style={{ color: "var(--text-mute)" }}>
-                Quét mã QR bằng app MoMo
-              </p>
+              {/* Tên người nhận */}
+              <div className="text-center">
+                <div
+                  className="text-[13px] font-bold tracking-wide uppercase"
+                  style={{ color: "#ae2070" }}
+                >
+                  NGUYEN HOANG ANH
+                </div>
+                <div className="text-[11px] mt-0.5" style={{ color: "var(--text-mute)" }}>
+                  Quét bằng app MoMo hoặc camera
+                </div>
+              </div>
 
               {/* Divider */}
               <div className="w-full flex items-center gap-3">
                 <div className="flex-1 h-px" style={{ backgroundColor: "var(--color-border)" }} />
-                <span className="text-[11px]" style={{ color: "var(--text-mute)" }}>hoặc chuyển khoản</span>
+                <span className="text-[11px]" style={{ color: "var(--text-mute)" }}>hoặc chuyển khoản thủ công</span>
                 <div className="flex-1 h-px" style={{ backgroundColor: "var(--color-border)" }} />
               </div>
 
               {/* Bank info */}
               <div
-                className="w-full rounded-xl p-4 flex flex-col gap-2"
+                className="w-full rounded-xl p-4 flex flex-col gap-2.5"
                 style={{ backgroundColor: "var(--bg-3)", border: "1px solid var(--color-border)" }}
               >
                 {[
@@ -130,25 +128,25 @@ export function DonateButton() {
                     <span className="text-[12px] font-medium" style={{ color: "var(--text-dim)" }}>{value}</span>
                   </div>
                 ))}
-                {/* Phone with copy */}
-                <div className="flex items-center justify-between mt-1">
+                {/* SĐT + copy */}
+                <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "var(--color-border)" }}>
                   <span className="text-[11px]" style={{ color: "var(--text-mute)" }}>Số điện thoại</span>
                   <button
                     onClick={copyNumber}
-                    className="flex items-center gap-1.5 text-[12px] font-semibold transition-colors"
-                    style={{ color: "var(--gold)" }}
+                    className="flex items-center gap-1.5 text-[13px] font-bold transition-colors"
+                    style={{ color: "#e91e8c" }}
                   >
                     {BANK_INFO.number}
                     {copied
-                      ? <Check className="w-3 h-3 text-green-400" />
-                      : <Copy className="w-3 h-3" />
+                      ? <Check className="w-3.5 h-3.5 text-green-400" />
+                      : <Copy className="w-3.5 h-3.5" />
                     }
                   </button>
                 </div>
               </div>
 
               <p className="text-[11px] text-center" style={{ color: "var(--text-mute)" }}>
-                Cảm ơn bạn đã ủng hộ! 🙏
+                Cảm ơn bạn rất nhiều! 🙏
               </p>
             </div>
           </div>
