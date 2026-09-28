@@ -8,6 +8,7 @@ import {
   ChevronDown, Zap, TrendingDown, Layers, Check,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { DonateButton } from "./DonateButton";
 import { cn } from "@/lib/utils";
 
 // ─── AI Platform logos (text-based badges) ───────────────────
@@ -204,6 +205,7 @@ export function MainArea({ sidebarOpen }: MainAreaProps) {
         {/* Right */}
         <div className="flex items-center gap-2">
           <ThemeToggle size="sm" />
+          <DonateButton />
           <button
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all hover:opacity-90"
             style={{

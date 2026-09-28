@@ -193,7 +193,18 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
                   <div className="text-[12px] font-semibold truncate" style={{ color: "var(--text-primary)" }}>
                     Người dùng
                   </div>
-                  <div className="text-[10px]" style={{ color: "var(--text-mute)" }}>Miễn phí</div>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <span
+                      className="text-[9px] font-bold tracking-wide px-1.5 py-0.5 rounded-full"
+                      style={{
+                        background: "linear-gradient(135deg, #b89a5e, #d4b47a)",
+                        color: "#111110",
+                      }}
+                    >
+                      PRO
+                    </span>
+                    <span className="text-[10px]" style={{ color: "var(--gold)" }}>Vip Free</span>
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-1">
