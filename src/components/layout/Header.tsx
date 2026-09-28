@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Search, Command } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -47,12 +48,8 @@ export function Header() {
     >
       <div className="flex items-center gap-6 w-full max-w-container mx-auto px-6">
         {/* Logo */}
-        <Link
-          href="/"
-          className="font-serif text-[17px] font-bold tracking-wide flex-shrink-0"
-          style={{ color: "var(--text-primary)" }}
-        >
-          Tàng <span style={{ color: "var(--gold)" }}>Kinh</span> Các
+        <Link href="/" className="flex-shrink-0">
+          <Logo size="sm" />
         </Link>
 
         {/* Nav */}

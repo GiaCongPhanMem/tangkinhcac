@@ -7,6 +7,7 @@ import {
   Sparkles, BookOpen, Users, Search,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const NAV_TOP = [
@@ -94,13 +95,8 @@ export function Sidebar({ open, onToggle }: SidebarProps) {
         {/* Header */}
         <div className="flex items-center justify-between px-3 py-3 flex-shrink-0">
           {open && (
-            <Link href="/" className="flex items-center gap-2 px-1">
-              <span
-                className="font-serif text-[15px] font-bold tracking-wide"
-                style={{ color: "var(--text-primary)" }}
-              >
-                Tàng <span style={{ color: "var(--gold)" }}>Kinh</span> Các
-              </span>
+            <Link href="/" className="flex items-center px-1">
+              <Logo size="sm" />
             </Link>
           )}
           <button
