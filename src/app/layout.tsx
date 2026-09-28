@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MobileNav } from "@/components/layout/MobileNav";
 import { CommandPalette } from "@/components/ui/CommandPalette";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
@@ -32,35 +29,20 @@ export const metadata: Metadata = {
   },
 };
 
-// Inline script runs before React hydration to prevent flash
-const themeScript = `
-(function() {
-  try {
-    var saved = localStorage.getItem('tkc-theme');
-    var preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.classList.add(preferred);
-  } catch(e) {
-    document.documentElement.classList.add('dark');
-  }
-})();
-`;
+const themeScript = `(function(){try{var s=localStorage.getItem('tkc-theme');var p=s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.classList.add(p);}catch(e){document.documentElement.classList.add('dark');}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={`${playfair.variable} ${inter.variable} dark`} suppressHydrationWarning>
       <head>
-        {/* Anti-flash script — must run synchronously before first paint */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
-        className="font-sans antialiased flex flex-col min-h-screen pb-[70px] md:pb-0"
+        className="font-sans antialiased"
         style={{ backgroundColor: "var(--bg-base)", color: "var(--text-primary)" }}
       >
         <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <MobileNav />
+          {children}
           <CommandPalette />
         </ThemeProvider>
       </body>
